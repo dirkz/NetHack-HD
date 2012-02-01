@@ -13,6 +13,21 @@
 		43AA354214D999AF00670E46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43AA354014D999AF00670E46 /* InfoPlist.strings */; };
 		43AA354414D999AF00670E46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA354314D999AF00670E46 /* main.m */; };
 		43AA354814D999B000670E46 /* NetHackAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA354714D999B000670E46 /* NetHackAppDelegate.m */; };
+		43AA357A14D99A8400670E46 /* CGPointMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA355B14D99A8400670E46 /* CGPointMath.m */; };
+		43AA357B14D99A8400670E46 /* GlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA355D14D99A8400670E46 /* GlobalConfig.m */; };
+		43AA357C14D99A8400670E46 /* NHAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356014D99A8400670E46 /* NHAction.m */; };
+		43AA357D14D99A8400670E46 /* NHCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356214D99A8400670E46 /* NHCondition.m */; };
+		43AA357E14D99A8400670E46 /* NHMapWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356514D99A8400670E46 /* NHMapWindow.m */; };
+		43AA357F14D99A8400670E46 /* NHMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356714D99A8400670E46 /* NHMenuItem.m */; };
+		43AA358014D99A8400670E46 /* NHMenuWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356914D99A8400670E46 /* NHMenuWindow.m */; };
+		43AA358114D99A8400670E46 /* NHMessageLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356B14D99A8400670E46 /* NHMessageLine.m */; };
+		43AA358214D99A8400670E46 /* NHMessageWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356D14D99A8400670E46 /* NHMessageWindow.m */; };
+		43AA358314D99A8400670E46 /* NHPoskey.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA356F14D99A8400670E46 /* NHPoskey.m */; };
+		43AA358414D99A8400670E46 /* NHStatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA357114D99A8400670E46 /* NHStatusWindow.m */; };
+		43AA358514D99A8400670E46 /* NHTextWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA357314D99A8400670E46 /* NHTextWindow.m */; };
+		43AA358614D99A8400670E46 /* NHWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA357514D99A8400670E46 /* NHWindow.m */; };
+		43AA358714D99A8400670E46 /* NHYNQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA357714D99A8400670E46 /* NHYNQuestion.m */; };
+		43AA358814D99A8400670E46 /* winios.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA357914D99A8400670E46 /* winios.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +41,38 @@
 		43AA354514D999B000670E46 /* NetHack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NetHack-Prefix.pch"; sourceTree = "<group>"; };
 		43AA354614D999B000670E46 /* NetHackAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetHackAppDelegate.h; sourceTree = "<group>"; };
 		43AA354714D999B000670E46 /* NetHackAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetHackAppDelegate.m; sourceTree = "<group>"; };
+		43AA355814D99A8400670E46 /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		43AA355A14D99A8400670E46 /* CGPointMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointMath.h; sourceTree = "<group>"; };
+		43AA355B14D99A8400670E46 /* CGPointMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointMath.m; sourceTree = "<group>"; };
+		43AA355C14D99A8400670E46 /* GlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfig.h; sourceTree = "<group>"; };
+		43AA355D14D99A8400670E46 /* GlobalConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalConfig.m; sourceTree = "<group>"; };
+		43AA355F14D99A8400670E46 /* NHAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHAction.h; sourceTree = "<group>"; };
+		43AA356014D99A8400670E46 /* NHAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHAction.m; sourceTree = "<group>"; };
+		43AA356114D99A8400670E46 /* NHCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHCondition.h; sourceTree = "<group>"; };
+		43AA356214D99A8400670E46 /* NHCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHCondition.m; sourceTree = "<group>"; };
+		43AA356314D99A8400670E46 /* NHHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHHandler.h; sourceTree = "<group>"; };
+		43AA356414D99A8400670E46 /* NHMapWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMapWindow.h; sourceTree = "<group>"; };
+		43AA356514D99A8400670E46 /* NHMapWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHMapWindow.m; sourceTree = "<group>"; };
+		43AA356614D99A8400670E46 /* NHMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMenuItem.h; sourceTree = "<group>"; };
+		43AA356714D99A8400670E46 /* NHMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHMenuItem.m; sourceTree = "<group>"; };
+		43AA356814D99A8400670E46 /* NHMenuWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMenuWindow.h; sourceTree = "<group>"; };
+		43AA356914D99A8400670E46 /* NHMenuWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHMenuWindow.m; sourceTree = "<group>"; };
+		43AA356A14D99A8400670E46 /* NHMessageLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMessageLine.h; sourceTree = "<group>"; };
+		43AA356B14D99A8400670E46 /* NHMessageLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHMessageLine.m; sourceTree = "<group>"; };
+		43AA356C14D99A8400670E46 /* NHMessageWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMessageWindow.h; sourceTree = "<group>"; };
+		43AA356D14D99A8400670E46 /* NHMessageWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHMessageWindow.m; sourceTree = "<group>"; };
+		43AA356E14D99A8400670E46 /* NHPoskey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHPoskey.h; sourceTree = "<group>"; };
+		43AA356F14D99A8400670E46 /* NHPoskey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHPoskey.m; sourceTree = "<group>"; };
+		43AA357014D99A8400670E46 /* NHStatusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHStatusWindow.h; sourceTree = "<group>"; };
+		43AA357114D99A8400670E46 /* NHStatusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHStatusWindow.m; sourceTree = "<group>"; };
+		43AA357214D99A8400670E46 /* NHTextWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHTextWindow.h; sourceTree = "<group>"; };
+		43AA357314D99A8400670E46 /* NHTextWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHTextWindow.m; sourceTree = "<group>"; };
+		43AA357414D99A8400670E46 /* NHWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHWindow.h; sourceTree = "<group>"; };
+		43AA357514D99A8400670E46 /* NHWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHWindow.m; sourceTree = "<group>"; };
+		43AA357614D99A8400670E46 /* NHYNQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHYNQuestion.h; sourceTree = "<group>"; };
+		43AA357714D99A8400670E46 /* NHYNQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHYNQuestion.m; sourceTree = "<group>"; };
+		43AA357814D99A8400670E46 /* winios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winios.h; sourceTree = "<group>"; };
+		43AA357914D99A8400670E46 /* winios.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = winios.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +119,9 @@
 		43AA353D14D999AF00670E46 /* NetHack */ = {
 			isa = PBXGroup;
 			children = (
+				43AA355714D99A8400670E46 /* DLog */,
+				43AA355914D99A8400670E46 /* Util */,
+				43AA355E14D99A8400670E46 /* Windows */,
 				43AA354614D999B000670E46 /* NetHackAppDelegate.h */,
 				43AA354714D999B000670E46 /* NetHackAppDelegate.m */,
 				43AA353E14D999AF00670E46 /* Supporting Files */,
@@ -89,6 +139,59 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		43AA355714D99A8400670E46 /* DLog */ = {
+			isa = PBXGroup;
+			children = (
+				43AA355814D99A8400670E46 /* DLog.h */,
+			);
+			path = DLog;
+			sourceTree = SOURCE_ROOT;
+		};
+		43AA355914D99A8400670E46 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				43AA355A14D99A8400670E46 /* CGPointMath.h */,
+				43AA355B14D99A8400670E46 /* CGPointMath.m */,
+				43AA355C14D99A8400670E46 /* GlobalConfig.h */,
+				43AA355D14D99A8400670E46 /* GlobalConfig.m */,
+			);
+			path = Util;
+			sourceTree = SOURCE_ROOT;
+		};
+		43AA355E14D99A8400670E46 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				43AA355F14D99A8400670E46 /* NHAction.h */,
+				43AA356014D99A8400670E46 /* NHAction.m */,
+				43AA356114D99A8400670E46 /* NHCondition.h */,
+				43AA356214D99A8400670E46 /* NHCondition.m */,
+				43AA356314D99A8400670E46 /* NHHandler.h */,
+				43AA356414D99A8400670E46 /* NHMapWindow.h */,
+				43AA356514D99A8400670E46 /* NHMapWindow.m */,
+				43AA356614D99A8400670E46 /* NHMenuItem.h */,
+				43AA356714D99A8400670E46 /* NHMenuItem.m */,
+				43AA356814D99A8400670E46 /* NHMenuWindow.h */,
+				43AA356914D99A8400670E46 /* NHMenuWindow.m */,
+				43AA356A14D99A8400670E46 /* NHMessageLine.h */,
+				43AA356B14D99A8400670E46 /* NHMessageLine.m */,
+				43AA356C14D99A8400670E46 /* NHMessageWindow.h */,
+				43AA356D14D99A8400670E46 /* NHMessageWindow.m */,
+				43AA356E14D99A8400670E46 /* NHPoskey.h */,
+				43AA356F14D99A8400670E46 /* NHPoskey.m */,
+				43AA357014D99A8400670E46 /* NHStatusWindow.h */,
+				43AA357114D99A8400670E46 /* NHStatusWindow.m */,
+				43AA357214D99A8400670E46 /* NHTextWindow.h */,
+				43AA357314D99A8400670E46 /* NHTextWindow.m */,
+				43AA357414D99A8400670E46 /* NHWindow.h */,
+				43AA357514D99A8400670E46 /* NHWindow.m */,
+				43AA357614D99A8400670E46 /* NHYNQuestion.h */,
+				43AA357714D99A8400670E46 /* NHYNQuestion.m */,
+				43AA357814D99A8400670E46 /* winios.h */,
+				43AA357914D99A8400670E46 /* winios.m */,
+			);
+			path = Windows;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -153,6 +256,21 @@
 			files = (
 				43AA354414D999AF00670E46 /* main.m in Sources */,
 				43AA354814D999B000670E46 /* NetHackAppDelegate.m in Sources */,
+				43AA357A14D99A8400670E46 /* CGPointMath.m in Sources */,
+				43AA357B14D99A8400670E46 /* GlobalConfig.m in Sources */,
+				43AA357C14D99A8400670E46 /* NHAction.m in Sources */,
+				43AA357D14D99A8400670E46 /* NHCondition.m in Sources */,
+				43AA357E14D99A8400670E46 /* NHMapWindow.m in Sources */,
+				43AA357F14D99A8400670E46 /* NHMenuItem.m in Sources */,
+				43AA358014D99A8400670E46 /* NHMenuWindow.m in Sources */,
+				43AA358114D99A8400670E46 /* NHMessageLine.m in Sources */,
+				43AA358214D99A8400670E46 /* NHMessageWindow.m in Sources */,
+				43AA358314D99A8400670E46 /* NHPoskey.m in Sources */,
+				43AA358414D99A8400670E46 /* NHStatusWindow.m in Sources */,
+				43AA358514D99A8400670E46 /* NHTextWindow.m in Sources */,
+				43AA358614D99A8400670E46 /* NHWindow.m in Sources */,
+				43AA358714D99A8400670E46 /* NHYNQuestion.m in Sources */,
+				43AA358814D99A8400670E46 /* winios.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
