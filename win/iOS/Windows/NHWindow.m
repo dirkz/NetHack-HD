@@ -18,23 +18,23 @@
 @synthesize x;
 @synthesize y;
 
-@synthesize messages;
+@synthesize messageLines;
 
 - (id)initWithType:(int)t {
     if ((self = [super init])) {
         type = t;
-        messages = [[NSMutableArray alloc] init];
+        messageLines = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
-    [messages release];
+    [messageLines release];
     [super dealloc];
 }
 
 - (void)clear {
-    [messages removeAllObjects];
+    [messageLines removeAllObjects];
 }
 
 - (NSString *)windowNameFromType:(int)t {
@@ -64,7 +64,7 @@
 }
 
 - (void)addCString:(const char *)s withAttribute:(int)attr {
-    [messages addObject:[NHMessageLine messageLineWithCString:s attribute:attr]];
+    [messageLines addObject:[NHMessageLine messageLineWithCString:s attribute:attr]];
 }
 
 - (void)addCString:(const char *)s {
@@ -72,10 +72,10 @@
 }
 
 - (NHMessageLine *)messageLineAtIndex:(NSUInteger)i {
-    return [messages objectAtIndex:i];
+    return [messageLines objectAtIndex:i];
 }
 
-- (NSString *)messageAtIndex:(NSUInteger)i {
+- (NSString *)messageStringAtIndex:(NSUInteger)i {
     NHMessageLine *line = [self messageLineAtIndex:i];
     return line.message;
 }
@@ -83,7 +83,15 @@
 #pragma mark - Properties
 
 - (NSUInteger)numberOfMessages {
-    return messages.count;
+    return messageLines.count;
+}
+
+- (NSArray *)messageStrings {
+    NSMutableArray *lines = [NSMutableArray arrayWithCapacity:self.numberOfMessages];
+    for (NHMessageLine *line in self.messageLines) {
+        [line addObject:line.message];
+    }
+    return lines;
 }
 
 @end

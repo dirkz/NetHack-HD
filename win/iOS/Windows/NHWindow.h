@@ -14,7 +14,7 @@
 
 @interface NHWindow : NHCondition {
     
-    NSMutableArray *messages;
+    NSMutableArray *messageLines;
     
 }
 
@@ -23,7 +23,8 @@
 @property (nonatomic, assign) int x;
 @property (nonatomic, assign) int y;
 
-@property (nonatomic, readonly) NSArray *messages;
+@property (nonatomic, readonly) NSArray *messageLines;
+@property (nonatomic, readonly) NSArray *messageStrings;
 @property (nonatomic, readonly) NSUInteger numberOfMessages;
 
 - (id)initWithType:(int)t;
@@ -36,6 +37,6 @@
 - (void)addCString:(const char *)s;
 
 - (NHMessageLine *)messageLineAtIndex:(NSUInteger)i;
-- (NSString *)messageAtIndex:(NSUInteger)i;
+- (NSString *)messageStringAtIndex:(NSUInteger)i;
 
 @end

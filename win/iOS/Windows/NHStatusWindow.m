@@ -25,13 +25,13 @@
 
 - (void)clear {
     // make sure we have exactly 2 lines in messages
-    [messages removeAllObjects];
-    [messages addObject:[NSNull null]];
-    [messages addObject:[NSNull null]];
+    [messageLines removeAllObjects];
+    [messageLines addObject:[NSNull null]];
+    [messageLines addObject:[NSNull null]];
 }
 
 - (void)addCString:(const char *)s withAttribute:(int)attr {
-    [messages replaceObjectAtIndex:self.y withObject:[NHMessageLine messageLineWithCString:s attribute:attr]];
+    [messageLines replaceObjectAtIndex:self.y withObject:[NHMessageLine messageLineWithCString:s attribute:attr]];
 }
 
 @end

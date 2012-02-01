@@ -14,6 +14,7 @@
 #import "NHYNQuestion.h"
 #import "NHHandler.h"
 #import "GlobalConfig.h"
+#import "NHMessageWindow.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -30,7 +31,7 @@ extern int unix_main(int argc, char **argv);
 @property (nonatomic, retain) NHYNQuestion *currentYNQuestion;
 
 - (void)netHackMainLoop:(id)arg;
-- (void)addMessageLine:(NSString *)line;
+- (void)addMessageLineString:(NSString *)line;
 
 @end
 
@@ -133,7 +134,7 @@ extern int unix_main(int argc, char **argv);
 
 #pragma mark - Internal API
 
-- (void)addMessageLine:(NSString *)line {
+- (void)addMessageLineString:(NSString *)line {
     NSRange selectedRange = NSMakeRange(0, 0);
     if ([messageView hasText]) {
         NSString *content = [NSString stringWithFormat:@"%@\n%@", messageView.text, line];
@@ -149,7 +150,7 @@ extern int unix_main(int argc, char **argv);
 
 - (void)handleYNQuestion:(NHYNQuestion *)question {
     self.currentYNQuestion = question;
-    [self addMessageLine:question.question];
+    [self addMessageLineString:question.question];
     [dummyTextView becomeFirstResponder];
 }
 
@@ -162,7 +163,12 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleMessageWindow:(NHMessageWindow *)w shouldBlock:(BOOL)b {
-    
+    if (w.numberOfMessages) {
+        NSArray *lines = w.messageStrings;
+        for (NSString *line in lines) {
+            [self addMessageLineString:line];
+        }
+    }
 }
 
 - (void)handlePoskey:(NHPoskey *)p {
