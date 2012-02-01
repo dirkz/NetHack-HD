@@ -6,7 +6,14 @@
 //  Copyright (c) 2012 Dirk Zimmermann. All rights reserved.
 //
 
+#include <sys/stat.h> // mkdir()
+
 #import "MainViewController.h"
+
+#import "RoguelikeTextView.h"
+#import "NHYNQuestion.h"
+#import "NHHandler.h"
+#import "GlobalConfig.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -15,14 +22,21 @@ extern int unix_main(int argc, char **argv);
     IBOutlet UITextView *messageView;
     IBOutlet UILabel *statusLine1;
     IBOutlet UILabel *statusLine2;
+    RoguelikeTextView *dummyTextView;
+    NSThread *netHackThread;
     
 }
 
+@property (nonatomic, retain) NHYNQuestion *currentYNQuestion;
+
 - (void)netHackMainLoop:(id)arg;
+- (void)addMessageLine:(NSString *)line;
 
 @end
 
 @implementation MainViewController
+
+@synthesize currentYNQuestion;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +68,16 @@ extern int unix_main(int argc, char **argv);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    dummyTextView = [[RoguelikeTextView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:dummyTextView];
+    dummyTextView.delegate = self;
+    [dummyTextView release];
+    
+    [[GlobalConfig sharedInstance] setObject:self forKey:kNHHandler];
+    
+	netHackThread = [[NSThread alloc] initWithTarget:self selector:@selector(netHackMainLoop:) object:nil];
+	[netHackThread start];
 }
 
 - (void)viewDidUnload
@@ -105,6 +129,62 @@ extern int unix_main(int argc, char **argv);
 	
 	// clean up thread pool
 	[pool drain];
+}
+
+#pragma mark - Internal API
+
+- (void)addMessageLine:(NSString *)line {
+    if ([messageView hasText]) {
+        NSString *content = [NSString stringWithFormat:@"%@\n%@", messageView.text, line];
+        messageView.text = content;
+    } else {
+        messageView.text = line;
+    }
+}
+
+#pragma mark - NHHandler
+
+- (void)handleYNQuestion:(NHYNQuestion *)question {
+    self.currentYNQuestion = question;
+    [self addMessageLine:question.question];
+}
+
+- (void)handleMenuWindow:(NHMenuWindow *)w {
+    
+}
+
+- (void)handleRawPrintWithMessageWindow:(NHMessageWindow *)w {
+    
+}
+
+- (void)handleMessageWindow:(NHMessageWindow *)w shouldBlock:(BOOL)b {
+    
+}
+
+- (void)handlePoskey:(NHPoskey *)p {
+    
+}
+
+- (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
+    
+}
+
+- (void)handleStatusWindow:(NHStatusWindow *)w {
+    
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if (text.length == 1) {
+        char c = [text characterAtIndex:0];
+        if (self.currentYNQuestion) {
+            currentYNQuestion.choice = c;
+            [currentYNQuestion signal];
+            self.currentYNQuestion = nil;
+        }
+    }
+    return NO;
 }
 
 @end

@@ -278,6 +278,7 @@
 		43AA39C614D99CAC00670E46 /* wizhelp in Resources */ = {isa = PBXBuildFile; fileRef = 43AA392614D99CAC00670E46 /* wizhelp */; };
 		43AA39CE14D99DA600670E46 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AA39CD14D99DA600670E46 /* MainStoryboard.storyboard */; };
 		43AA39D214D99E4300670E46 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA39D114D99E4300670E46 /* MainViewController.m */; };
+		43AA39F214D9AB6F00670E46 /* RoguelikeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -671,6 +672,8 @@
 		43AA39CD14D99DA600670E46 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		43AA39D014D99E4300670E46 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		43AA39D114D99E4300670E46 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		43AA39F014D9AB6F00670E46 /* RoguelikeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoguelikeTextView.h; sourceTree = "<group>"; };
+		43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoguelikeTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,6 +762,8 @@
 				43AA355B14D99A8400670E46 /* CGPointMath.m */,
 				43AA355C14D99A8400670E46 /* GlobalConfig.h */,
 				43AA355D14D99A8400670E46 /* GlobalConfig.m */,
+				43AA39F014D9AB6F00670E46 /* RoguelikeTextView.h */,
+				43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */,
 			);
 			path = Util;
 			sourceTree = SOURCE_ROOT;
@@ -1528,6 +1533,7 @@
 				43AA388414D99B7B00670E46 /* tile.c in Sources */,
 				43AA388514D99B7B00670E46 /* vis_tab.c in Sources */,
 				43AA39D214D99E4300670E46 /* MainViewController.m in Sources */,
+				43AA39F214D9AB6F00670E46 /* RoguelikeTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
