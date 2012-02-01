@@ -1,18 +1,18 @@
-NetHack iOS
+NetHack HD
 ===========
 
-Forked from:
+Based on:
 
 * [Vanilla-NetHack/NetHack](https://github.com/Vanilla-NetHack/NetHack)
 * [dirkz/NetHack](https://github.com/dirkz/NetHack)
+* [dirkz/NetHack-iOS](https://github.com/dirkz/NetHack-iOS)
 
 See also the README in the top folder of this distribution for information about
 Vanilla NetHack.
 
-Common base for various iOS (and maybe even OS X) ports, containing files for
-basic infrastructure.
+NetHack iPad port
 
-January 2012  
+February 2012  
 Dirk Zimmermann  
 (me AT dirkz DOT com)  
 [http://blog.dirkz.com](http://blog.dirkz.com "http://blog.dirkz.com")
