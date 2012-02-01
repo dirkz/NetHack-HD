@@ -8,6 +8,8 @@
 
 #import "NetHackAppDelegate.h"
 
+#import "GlobalConfig.h"
+
 @implementation NetHackAppDelegate
 
 @synthesize window = _window;
@@ -15,11 +17,13 @@
 - (void)dealloc
 {
     [_window release];
+    [[GlobalConfig sharedInstance] release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [GlobalConfig setSharedInstance:[[GlobalConfig alloc] init]];
     return YES;
 }
 

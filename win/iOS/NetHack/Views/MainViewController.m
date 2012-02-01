@@ -8,6 +8,20 @@
 
 #import "MainViewController.h"
 
+extern int unix_main(int argc, char **argv);
+
+@interface MainViewController () {
+    
+    IBOutlet UITextView *messageView;
+    IBOutlet UILabel *statusLine1;
+    IBOutlet UILabel *statusLine2;
+    
+}
+
+- (void)netHackMainLoop:(id)arg;
+
+@end
+
 @implementation MainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,13 +50,11 @@
 }
  */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
- */
 
 - (void)viewDidUnload
 {
@@ -55,6 +67,44 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - NetHack main loop
+
+- (void)netHackMainLoop:(id)arg {
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+#ifdef SLASHEM
+	char *argv[] = {
+		"SlashEM",
+	};
+#else
+	char *argv[] = {
+		"NetHack",
+	};
+#endif
+	int argc = sizeof(argv)/sizeof(char *);
+	
+	// create necessary directories
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *baseDirectory = [paths objectAtIndex:0];
+	DLog(@"baseDir %@", baseDirectory);
+	setenv("NETHACKDIR", [baseDirectory cStringUsingEncoding:NSASCIIStringEncoding], 1);
+	//setenv("SHOPTYPE", "G", 1); // force general stores on every level in wizard mode
+	NSString *saveDirectory = [baseDirectory stringByAppendingPathComponent:@"save"];
+	mkdir([saveDirectory cStringUsingEncoding:NSASCIIStringEncoding], 0777);
+	
+	// show directory (for debugging)
+#if 0	
+	for (NSString *filename in [[NSFileManager defaultManager] enumeratorAtPath:baseDirectory]) {
+		DLog(@"%@", filename);
+	}
+#endif
+	
+	// call it
+	unix_main(argc, argv);
+	
+	// clean up thread pool
+	[pool drain];
 }
 
 @end
