@@ -134,12 +134,15 @@ extern int unix_main(int argc, char **argv);
 #pragma mark - Internal API
 
 - (void)addMessageLine:(NSString *)line {
+    NSRange selectedRange = NSMakeRange(0, 0);
     if ([messageView hasText]) {
         NSString *content = [NSString stringWithFormat:@"%@\n%@", messageView.text, line];
         messageView.text = content;
+        selectedRange.location = content.length - line.length;
     } else {
         messageView.text = line;
     }
+    messageView.selectedRange = selectedRange;
 }
 
 #pragma mark - NHHandler
@@ -147,6 +150,7 @@ extern int unix_main(int argc, char **argv);
 - (void)handleYNQuestion:(NHYNQuestion *)question {
     self.currentYNQuestion = question;
     [self addMessageLine:question.question];
+    [dummyTextView becomeFirstResponder];
 }
 
 - (void)handleMenuWindow:(NHMenuWindow *)w {
