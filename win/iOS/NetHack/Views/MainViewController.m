@@ -17,6 +17,7 @@
 #import "NHMessageWindow.h"
 #import "Tileset.h"
 #import "MapView.h"
+#import "NHStatusWindow.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -185,7 +186,8 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleStatusWindow:(NHStatusWindow *)w {
-    
+    statusLine1.text = [w messageStringAtIndex:0];
+    statusLine2.text = [w messageStringAtIndex:1];
 }
 
 #pragma mark - UITextViewDelegate
