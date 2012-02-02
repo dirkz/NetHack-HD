@@ -691,7 +691,7 @@ STATIC_OVL void tone(hz, ticks)
 unsigned int hz, ticks;
 {
     ioctl(0,KDMKTONE,hz|((ticks*10)<<16));
-# ifdef DEBUG
+# ifdef NH_DEBUG
     printf("TONE: %6d %6d\n",hz,ticks * 10);
 # endif
     nap(ticks * 10);
@@ -702,7 +702,7 @@ STATIC_OVL void rest(ticks)
 int	ticks;
 {
     nap(ticks * 10);
-# ifdef DEBUG
+# ifdef NH_DEBUG
     printf("REST:        %6d\n",ticks * 10);
 # endif
 }
@@ -740,7 +740,7 @@ char	*buf;
     playstring( buf, strlen(buf));
 }
 
-# ifdef DEBUG
+# ifdef NH_DEBUG
 main(argc,argv)
 char *argv[];
 {

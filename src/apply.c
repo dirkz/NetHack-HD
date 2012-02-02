@@ -1603,7 +1603,7 @@ long timeout;
 	char monnambuf[BUFSZ], carriedby[BUFSZ];
 
 	if (!figurine) {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	    pline("null figurine in fig_transform()");
 #endif
 	    return;

@@ -5,7 +5,7 @@
 #include "hack.h"
 #include "eshk.h"
 
-/*#define DEBUG*/
+/*#define NH_DEBUG*/
 
 #define PAY_SOME    2
 #define PAY_BUY     1
@@ -1187,7 +1187,7 @@ dopay()
 	}
 
 	if(!shkp) {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 		pline("dopay: null shkp.");
 #endif
 		return(0);

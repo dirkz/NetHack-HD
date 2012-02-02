@@ -100,7 +100,7 @@ register int x, y, n;
 	int cnttmp,cntdiv;
 
 	cnttmp = cnt;
-# ifdef DEBUG
+# ifdef NH_DEBUG
 	pline("init group call x=%d,y=%d,n=%d,cnt=%d.", x, y, n, cnt);
 # endif
 	cntdiv = ((u.ulevel < 3) ? 4 : (u.ulevel < 5) ? 2 : 1);
@@ -803,7 +803,7 @@ boolean ghostly;
 		 mvitals[mndx].born++;
 	if ((int) mvitals[mndx].born >= lim && !(mons[mndx].geno & G_NOGEN) &&
 		!(mvitals[mndx].mvflags & G_EXTINCT)) {
-#if defined(DEBUG) && defined(WIZARD)
+#if defined(NH_DEBUG) && defined(WIZARD)
 		if (wizard) pline("Automatically extinguished %s.",
 					makeplural(mons[mndx].mname));
 #endif
@@ -873,7 +873,7 @@ register int	mmflags;
 		/* if you are to make a specific monster and it has
 		   already been genocided, return */
 		if (mvitals[mndx].mvflags & G_GENOD) return((struct monst *) 0);
-#if defined(WIZARD) && defined(DEBUG)
+#if defined(WIZARD) && defined(NH_DEBUG)
 		if (wizard && (mvitals[mndx].mvflags & G_EXTINCT))
 		    pline("Explicitly creating extinct monster %s.",
 			mons[mndx].mname);
@@ -888,7 +888,7 @@ register int	mmflags;
 		struct monst fakemon;
 		do {
 			if(!(ptr = rndmonst())) {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 			    pline("Warning: no monster.");
 #endif
 			    return((struct monst *) 0);	/* no more monsters! */
@@ -1218,7 +1218,7 @@ rndmonst()
 	    }		
 	    if (mndx == SPECIAL_PM) {
 		/* evidently they've all been exterminated */
-#ifdef DEBUG
+#ifdef NH_DEBUG
 		pline("rndmonst: no common mons!");
 #endif
 		return (struct permonst *)0;
@@ -1262,7 +1262,7 @@ rndmonst()
 
 	if (rndmonst_state.choice_count <= 0) {
 	    /* maybe no common mons left, or all are too weak or too strong */
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	    Norep("rndmonst: choice_count=%d", rndmonst_state.choice_count);
 #endif
 	    return (struct permonst *)0;

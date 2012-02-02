@@ -4,7 +4,7 @@
 
 #include "hack.h"
 #include "edog.h"
-/* #define DEBUG */	/* turn on for diagnostics */
+/* #define NH_DEBUG */	/* turn on for diagnostics */
 
 #ifdef OVLB
 
@@ -1289,7 +1289,7 @@ bury_an_obj(otmp)
 	struct obj *otmp2;
 	boolean under_ice;
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("bury_an_obj: %s", xname(otmp));
 #endif
 	if (otmp == uball)
@@ -1342,7 +1342,7 @@ int x, y;
 {
 	struct obj *otmp, *otmp2;
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	if(level.objects[x][y] != (struct obj *)0)
 		pline("bury_objs: at %d, %d", x, y);
 #endif
@@ -1361,7 +1361,7 @@ int x, y;
 {
 	struct obj *otmp, *otmp2;
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("unearth_objs: at %d, %d", x, y);
 #endif
 	for (otmp = level.buriedobjlist; otmp; otmp = otmp2) {
@@ -1457,7 +1457,7 @@ void
 bury_monst(mtmp)
 struct monst *mtmp;
 {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("bury_monst: %s", mon_nam(mtmp));
 #endif
 	if(canseemon(mtmp)) {
@@ -1478,7 +1478,7 @@ struct monst *mtmp;
 void
 bury_you()
 {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("bury_you");
 #endif
     if (!Levitation && !Flying) {
@@ -1497,7 +1497,7 @@ bury_you()
 void
 unearth_you()
 {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("unearth_you");
 #endif
 	u.uburied = FALSE;
@@ -1510,7 +1510,7 @@ unearth_you()
 void
 escape_tomb()
 {
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("escape_tomb");
 #endif
 	if ((Teleportation || can_teleport(youmonst.data)) &&
@@ -1542,7 +1542,7 @@ bury_obj(otmp)
 struct obj *otmp;
 {
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	pline("bury_obj");
 #endif
 	if(cansee(otmp->ox, otmp->oy))
@@ -1553,7 +1553,7 @@ struct obj *otmp;
 }
 #endif
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 int
 wiz_debug_cmd() /* in this case, bury everything at your loc and around */
 {
@@ -1565,7 +1565,7 @@ wiz_debug_cmd() /* in this case, bury everything at your loc and around */
 	return 0;
 }
 
-#endif /* DEBUG */
+#endif /* NH_DEBUG */
 #endif /* OVL3 */
 
 /*dig.c*/

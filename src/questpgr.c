@@ -11,7 +11,7 @@
 
 #define QTEXT_FILE	"quest.dat"
 
-/* #define DEBUG */	/* uncomment for debugging */
+/* #define NH_DEBUG */	/* uncomment for debugging */
 
 static void FDECL(Fread, (genericptr_t,int,int,dlb *));
 STATIC_DCL struct qtmsg * FDECL(construct_qtlist, (long));
@@ -31,7 +31,7 @@ static dlb	*msg_file;
 /* used by ldrname() and neminame(), then copied into cvt_buf */
 static char	nambuf[sizeof cvt_buf];
 
-#ifdef DEBUG
+#ifdef NH_DEBUG
 static void NDECL(dump_qtlist);
 
 static void
@@ -48,7 +48,7 @@ dump_qtlist()	/* dump the character msg list to check appearance */
 		deliver_by_window(msg, NHW_TEXT);
 	}
 }
-#endif /* DEBUG */
+#endif /* NH_DEBUG */
 
 static void
 Fread(ptr, size, nitems, stream)
@@ -127,7 +127,7 @@ load_qtlist()
 
 	if (!qt_list.common || !qt_list.chrole)
 	    impossible("load_qtlist: cannot load quest text.");
-#ifdef DEBUG
+#ifdef NH_DEBUG
 	dump_qtlist();
 #endif
 	return;	/* no ***DON'T*** close the msg_file */
