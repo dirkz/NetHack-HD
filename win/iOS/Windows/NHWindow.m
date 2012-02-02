@@ -17,6 +17,7 @@
 @synthesize type;
 @synthesize x;
 @synthesize y;
+@synthesize text;
 
 @synthesize messageLines;
 
@@ -92,6 +93,11 @@
         [lines addObject:line.message];
     }
     return lines;
+}
+
+- (NSString *)text {
+    NSArray *lines = [self messageStrings];
+    return [lines componentsJoinedByString:@"\n"];
 }
 
 @end

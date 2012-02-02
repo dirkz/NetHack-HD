@@ -16,4 +16,9 @@
 @property (nonatomic, assign) NHMapWindow *map;
 @property (nonatomic, assign) Tileset *tileset;
 
+/** The tile rect where the player is, in local view coordinates.
+ * Will return the map center if there's currently no player position.
+ */
+@property (nonatomic, readonly) CGRect playerRect;
+
 @end

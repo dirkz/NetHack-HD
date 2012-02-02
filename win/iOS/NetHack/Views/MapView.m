@@ -44,4 +44,18 @@ extern short glyph2tile[MAX_GLYPH];
     }
 }
 
+#pragma mark - Properties
+
+- (CGRect)playerRect {
+    if (map) {
+        return CGRectMake(self.bounds.size.width/2 - map.x * tileset.tilesize.width,
+                          self.bounds.size.height/2 - map.y * tileset.tilesize.height,
+                          tileset.tilesize.width, tileset.tilesize.height);
+    } else {
+        CGRect r = CGRectMake(self.bounds.size.width/2, self.bounds.size.height/2, 0.f, 0.f);
+        r = CGRectInset(r, tileset.tilesize.width/2, tileset.tilesize.height/2);
+        return r;
+    }
+}
+
 @end

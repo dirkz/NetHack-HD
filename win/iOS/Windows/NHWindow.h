@@ -26,6 +26,7 @@
 @property (nonatomic, readonly) NSArray *messageLines;
 @property (nonatomic, readonly) NSArray *messageStrings;
 @property (nonatomic, readonly) NSUInteger numberOfMessages;
+@property (nonatomic, readonly) NSString *text;
 
 - (id)initWithType:(int)t;
 

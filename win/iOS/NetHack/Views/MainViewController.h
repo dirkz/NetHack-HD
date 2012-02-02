@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <UITextViewDelegate>
+#import "TextMenuViewController.h"
+
+@interface MainViewController : UIViewController <UITextViewDelegate,TextMenuViewControllerDelegate>
 
 @end

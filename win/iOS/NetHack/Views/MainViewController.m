@@ -19,6 +19,8 @@
 #import "MapView.h"
 #import "NHStatusWindow.h"
 #import "NHPoskey.h"
+#import "NHMenuWindow.h"
+#import "TextMenuViewController.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -36,6 +38,7 @@ extern int unix_main(int argc, char **argv);
 
 @property (nonatomic, retain) NHYNQuestion *currentYNQuestion;
 @property (nonatomic, retain) NHPoskey *currentPoskey;
+@property (nonatomic, retain) NHMenuWindow *currentMenuWindow;
 
 - (void)netHackMainLoop:(id)arg;
 - (void)addMessageLineString:(NSString *)line;
@@ -46,6 +49,7 @@ extern int unix_main(int argc, char **argv);
 
 @synthesize currentYNQuestion;
 @synthesize currentPoskey;
+@synthesize currentMenuWindow;
 
 /** @return The top view rectangle that is obscured by views except the map view */
 - (CGRect)topViewsRect {
@@ -122,8 +126,7 @@ extern int unix_main(int argc, char **argv);
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-	return YES;
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 #pragma mark - NetHack main loop
@@ -187,7 +190,12 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleMenuWindow:(NHMenuWindow *)w {
-    
+    self.currentMenuWindow = w;
+    if (self.currentMenuWindow.isMenuWindow) {
+        //todo show real menu
+    } else {
+        [self performSegueWithIdentifier:@"TextMenu" sender:nil];
+    }
 }
 
 - (void)handleRawPrintWithMessageWindow:(NHMessageWindow *)w {
@@ -239,9 +247,19 @@ extern int unix_main(int argc, char **argv);
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([@"TextMenuSegue" isEqualToString:segue.identifier]) {
-        
+    if ([segue.identifier isEqualToString:@"TextMenu"]) {
+        TextMenuViewController *vc = segue.destinationViewController;
+        vc.menuWindow = self.currentMenuWindow;
+        vc.delegate = self;
     }
+}
+
+#pragma mark TextMenuViewControllerDelegate
+
+- (void)textMenuViewControllerDone:(TextMenuViewController *)vc {
+    [vc dismissModalViewControllerAnimated:YES];
+    [self.currentMenuWindow signal];
+    self.currentMenuWindow = nil;
 }
 
 @end

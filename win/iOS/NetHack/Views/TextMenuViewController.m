@@ -1,14 +1,16 @@
 //
-//  TextMenuController.m
+//  TextMenuViewController.m
 //  NetHack
 //
 //  Created by Dirk Zimmermann on 2/2/12.
 //  Copyright (c) 2012 Dirk Zimmermann. All rights reserved.
 //
 
-#import "TextMenuController.h"
+#import "TextMenuViewController.h"
 
-@interface TextMenuController () {
+#import "NHMenuWindow.h"
+
+@interface TextMenuViewController () {
     
     IBOutlet UITextView *textView;
     
@@ -16,16 +18,10 @@
 
 @end
 
-@implementation TextMenuController
+@implementation TextMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize menuWindow;
+@synthesize delegate;
 
 - (void)didReceiveMemoryWarning
 {
@@ -61,8 +57,18 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-	return YES;
+	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    textView.text = menuWindow.text;
+}
+
+#pragma mark - Actions
+
+- (IBAction)done:(id)sender {
+    [delegate textMenuViewControllerDone:self];
 }
 
 @end
