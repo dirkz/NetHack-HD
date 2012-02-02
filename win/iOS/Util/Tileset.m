@@ -20,15 +20,15 @@
 
 @implementation Tileset
 
-@synthesize tileSize;
+@synthesize tilesize;
 
 - (id)initWithName:(NSString *)n tileSize:(CGSize)ts {
     if ((self = [super init])) {
-        tileSize = ts;
+        tilesize = ts;
         UIImage *image = [UIImage imageNamed:n];
         imageRef = CGImageRetain(image.CGImage);
-        columns = image.size.width/tileSize.width;
-        rows = image.size.height/tileSize.height;
+        columns = image.size.width/tilesize.width;
+        rows = image.size.height/tilesize.height;
     }
     return self;
 }
@@ -37,7 +37,7 @@
     int row = index / columns;
     int col = index % columns;
     NSAssert(col == index - row * columns, @"Modulo calculation of tile differs from difference calculation");
-    CGRect r = CGRectMake(col * tileSize.width, row * tileSize.height, tileSize.width, tileSize.height);
+    CGRect r = CGRectMake(col * tilesize.width, row * tilesize.height, tilesize.width, tilesize.height);
     return CGImageCreateWithImageInRect(imageRef, r);
 }
 

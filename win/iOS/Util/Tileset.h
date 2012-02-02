@@ -10,7 +10,7 @@
 
 @interface Tileset : NSObject
 
-@property (nonatomic, readonly) CGSize tileSize;
+@property (nonatomic, readonly) CGSize tilesize;
 
 
 - (id)initWithName:(NSString *)n tileSize:(CGSize)ts;
