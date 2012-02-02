@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		436A35C914DA9B700040158D /* TextMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 436A35C814DA9B700040158D /* TextMenuController.m */; };
 		43A377C814DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A377C714DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png */; };
 		43A377CC14DA7CE700B1A9C4 /* Tileset.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A377CB14DA7CE700B1A9C4 /* Tileset.m */; };
 		43A377CF14DA84D800B1A9C4 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A377CE14DA84D800B1A9C4 /* MapView.m */; };
@@ -285,6 +286,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		436A35C714DA9B700040158D /* TextMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextMenuController.h; sourceTree = "<group>"; };
+		436A35C814DA9B700040158D /* TextMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextMenuController.m; sourceTree = "<group>"; };
 		43A377C714DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vanilla Tiles 16x16.png"; sourceTree = "<group>"; };
 		43A377CA14DA7CE700B1A9C4 /* Tileset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tileset.h; sourceTree = "<group>"; };
 		43A377CB14DA7CE700B1A9C4 /* Tileset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tileset.m; sourceTree = "<group>"; };
@@ -1213,6 +1216,8 @@
 				43AA39D114D99E4300670E46 /* MainViewController.m */,
 				43A377CD14DA84D800B1A9C4 /* MapView.h */,
 				43A377CE14DA84D800B1A9C4 /* MapView.m */,
+				436A35C714DA9B700040158D /* TextMenuController.h */,
+				436A35C814DA9B700040158D /* TextMenuController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1550,6 +1555,7 @@
 				43AA39F214D9AB6F00670E46 /* RoguelikeTextView.m in Sources */,
 				43A377CC14DA7CE700B1A9C4 /* Tileset.m in Sources */,
 				43A377CF14DA84D800B1A9C4 /* MapView.m in Sources */,
+				436A35C914DA9B700040158D /* TextMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

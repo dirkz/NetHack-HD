@@ -45,10 +45,40 @@
                         <outlet property="messageView" destination="G2e-PR-O5p" id="3QS-1f-hsL"/>
                         <outlet property="statusLine1" destination="cR9-Fn-sgQ" id="oKc-hn-lyH"/>
                         <outlet property="statusLine2" destination="NU5-cc-QD7" id="FSM-gz-rrf"/>
+                        <segue destination="nTB-e4-MPM" kind="popover" identifier="TextMenuSegue" id="qT0-ah-LF5">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="82" y="10"/>
+            <point key="canvasLocation" x="42" y="10"/>
+        </scene>
+        <scene sceneID="QJj-Zd-hDg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6LK-7g-t6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="nTB-e4-MPM" customClass="TextMenuController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yKf-wq-Twg">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="UmG-RA-Cki">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="UmG-RA-Cki" id="myW-zl-ltL"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1239" y="10"/>
         </scene>
     </scenes>
     <classes>
@@ -62,6 +92,12 @@
         </class>
         <class className="MapView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapView.h"/>
+        </class>
+        <class className="TextMenuController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextMenuController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
