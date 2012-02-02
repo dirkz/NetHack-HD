@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class NHMapWindow;
+@class Tileset;
 
 @interface MapView : UIView
 
-@property (nonatomic, retain) NHMapWindow *map;
+@property (nonatomic, assign) NHMapWindow *map;
+@property (nonatomic, assign) Tileset *tileset;
 
 @end

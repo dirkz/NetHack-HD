@@ -180,6 +180,7 @@ extern int unix_main(int argc, char **argv);
 
 - (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
     ((MapView *) self.view).map = w;
+    ((MapView *) self.view).tileset = tileset;
     [self.view setNeedsDisplay];
 }
 

@@ -36,7 +36,7 @@
 - (CGImageRef)createImageWithIndex:(int)index {
     int row = index / columns;
     int col = index % columns;
-    NSAssert(col == index - row * columns, @"");
+    NSAssert(col == index - row * columns, @"Modulo calculation of tile differs from difference calculation");
     CGRect r = CGRectMake(col * tileSize.width, row * tileSize.height, tileSize.width, tileSize.height);
     return CGImageCreateWithImageInRect(imageRef, r);
 }
