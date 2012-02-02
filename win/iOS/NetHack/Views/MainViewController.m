@@ -18,6 +18,7 @@
 #import "Tileset.h"
 #import "MapView.h"
 #import "NHStatusWindow.h"
+#import "NHPoskey.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -34,6 +35,7 @@ extern int unix_main(int argc, char **argv);
 }
 
 @property (nonatomic, retain) NHYNQuestion *currentYNQuestion;
+@property (nonatomic, retain) NHPoskey *currentPoskey;
 
 - (void)netHackMainLoop:(id)arg;
 - (void)addMessageLineString:(NSString *)line;
@@ -43,6 +45,7 @@ extern int unix_main(int argc, char **argv);
 @implementation MainViewController
 
 @synthesize currentYNQuestion;
+@synthesize currentPoskey;
 
 /** @return The top view rectangle that is obscured by views except the map view */
 - (CGRect)topViewsRect {
@@ -201,7 +204,7 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handlePoskey:(NHPoskey *)p {
-    
+    self.currentPoskey = p;
 }
 
 - (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
@@ -224,6 +227,10 @@ extern int unix_main(int argc, char **argv);
             currentYNQuestion.choice = c;
             [currentYNQuestion signal];
             self.currentYNQuestion = nil;
+        } else if (self.currentPoskey) {
+            currentPoskey.key = c;
+            [currentPoskey signal];
+            self.currentPoskey = nil;
         }
     }
     return NO;
