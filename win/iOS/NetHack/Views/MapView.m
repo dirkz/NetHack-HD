@@ -15,54 +15,19 @@
 
 extern short glyph2tile[MAX_GLYPH];
 
-@interface MapView () {
-    
-    /** The area taken away by subviews */
-    CGRect subviewBounds;
-    
-    /** The area taken away by the keyboard */
-    CGRect keyboardBounds;
-    
-}
-
-@property (nonatomic, readonly) CGRect visibleArea;
-
-@end
-
 @implementation MapView
 
 @synthesize map;
 @synthesize tileset;
 
 - (void)awakeFromNib {
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
-        CGRect keyboardEndFrame = [[n.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        
-        // convert into view coordinates
-        keyboardBounds = [self convertRect:keyboardEndFrame fromView:nil];
-//        DLog(@"keyboardBounds %@", NSStringFromCGRect(keyboardBounds));
-        [self setNeedsDisplay];
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidHideNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
-        CGRect keyboardEndFrame = [[n.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        
-        // convert into view coordinates
-        keyboardBounds = [self convertRect:keyboardEndFrame fromView:nil];
-//        DLog(@"keyboardBounds %@", NSStringFromCGRect(keyboardBounds));
-        [self setNeedsDisplay];
-    }];
-    
 }
 
 - (void)drawRect:(CGRect)rect
 {
-//    DLog(@"visibleArea %@", NSStringFromCGRect(self.visibleArea));
     if (map) {
-        
-        CGPoint start = CGPointMake(CGRectGetMidX(self.visibleArea), CGRectGetMidY(self.visibleArea));
-        start.x -= map.x * tileset.tilesize.width;
-        start.y -= map.y * tileset.tilesize.height;
+        CGPoint start = CGPointMake(self.bounds.size.width/2 + tileset.tilesize.width/2 - map.x * tileset.tilesize.width,
+                                    self.bounds.size.height/2 + tileset.tilesize.height/2 - map.y * tileset.tilesize.height);
         
         for (int j = 0; j < map.rows; ++j) {
             for (int i = 0; i < map.columns; ++i) {
@@ -77,21 +42,6 @@ extern short glyph2tile[MAX_GLYPH];
             }
         }
     }
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    subviewBounds = CGRectZero;
-    for (UIView *view in self.subviews) {
-        subviewBounds = CGRectUnion(subviewBounds, view.frame);
-    }
-//    DLog(@"layoutSubviews subviewBounds %@", NSStringFromCGRect(subviewBounds));
-}
-
-#pragma mark - Properties
-
-- (CGRect)visibleArea {
-    return CGRectMake(0.f, CGRectGetMaxY(subviewBounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - CGRectGetHeight(subviewBounds) - CGRectGetHeight(keyboardBounds));
 }
 
 @end

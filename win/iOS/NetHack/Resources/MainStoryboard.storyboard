@@ -9,7 +9,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cti-Jm-kQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="96c-pw-Qfk" customClass="MainViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="t8A-Ab-rea" customClass="MapView">
+                    <view key="view" contentMode="scaleToFill" id="t8A-Ab-rea">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -37,14 +37,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="f5H-8s-U8r" customClass="MapView">
+                                <rect key="frame" x="0.0" y="87" width="1024" height="681"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="f5H-8s-U8r" id="zEI-gl-B4E"/>
                         <outlet property="messageView" destination="G2e-PR-O5p" id="3QS-1f-hsL"/>
                         <outlet property="statusLine1" destination="cR9-Fn-sgQ" id="oKc-hn-lyH"/>
                         <outlet property="statusLine2" destination="NU5-cc-QD7" id="FSM-gz-rrf"/>
+                        <outlet property="view" destination="t8A-Ab-rea" id="Q3F-HF-ILe"/>
                         <segue destination="nTB-e4-MPM" kind="popover" identifier="TextMenuSegue" id="qT0-ah-LF5">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -85,6 +92,7 @@
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MapView"/>
                 <relationship kind="outlet" name="messageView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="statusLine1" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="statusLine2" candidateClass="UILabel"/>

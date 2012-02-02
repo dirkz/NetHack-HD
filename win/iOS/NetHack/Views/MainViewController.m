@@ -29,6 +29,7 @@ extern int unix_main(int argc, char **argv);
     RoguelikeTextView *dummyTextView;
     NSThread *netHackThread;
     Tileset *tileset;
+    IBOutlet MapView *mapView;
     
 }
 
@@ -43,8 +44,32 @@ extern int unix_main(int argc, char **argv);
 
 @synthesize currentYNQuestion;
 
+/** @return The top view rectangle that is obscured by views except the map view */
+- (CGRect)topViewsRect {
+    CGRect r = CGRectUnion(statusLine1.frame, statusLine2.frame);
+    r = CGRectUnion(r, messageView.frame);
+    return r;
+}
+
+- (void)resizeMapViewWithKeyboardEndFrame:(CGRect)keyboardEndFrame {
+    // convert into view coordinates
+    CGRect keyboardBounds = [self.view convertRect:keyboardEndFrame fromView:nil];
+    CGRect topRect = [self topViewsRect];
+    CGRect mapRect = CGRectMake(0.f, CGRectGetMaxY(topRect), self.view.bounds.size.width, CGRectGetHeight(self.view.bounds) - CGRectGetHeight(topRect) - CGRectGetHeight(keyboardBounds));
+    mapView.frame = mapRect;
+}
+
 - (void)awakeFromNib {
     tileset = [[Tileset alloc] initWithName:@"Vanilla Tiles 16x16.png" tileSize:CGSizeMake(16.f, 16.f)];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
+        [self resizeMapViewWithKeyboardEndFrame:[[n.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidHideNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
+        [self resizeMapViewWithKeyboardEndFrame:[[n.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]];
+    }];
+    
 }
 
 - (void)dealloc {
@@ -180,9 +205,9 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
-    ((MapView *) self.view).map = w;
-    ((MapView *) self.view).tileset = tileset;
-    [self.view setNeedsDisplay];
+    mapView.map = w;
+    mapView.tileset = tileset;
+    [mapView setNeedsDisplay];
 }
 
 - (void)handleStatusWindow:(NHStatusWindow *)w {
