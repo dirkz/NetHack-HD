@@ -15,6 +15,8 @@
 #import "NHHandler.h"
 #import "GlobalConfig.h"
 #import "NHMessageWindow.h"
+#import "Tileset.h"
+#import "MapView.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -25,6 +27,7 @@ extern int unix_main(int argc, char **argv);
     IBOutlet UILabel *statusLine2;
     RoguelikeTextView *dummyTextView;
     NSThread *netHackThread;
+    Tileset *tileset;
     
 }
 
@@ -39,13 +42,13 @@ extern int unix_main(int argc, char **argv);
 
 @synthesize currentYNQuestion;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)awakeFromNib {
+    tileset = [[Tileset alloc] initWithName:@"Vanilla Tiles 16x16.png" tileSize:CGSizeMake(16.f, 16.f)];
+}
+
+- (void)dealloc {
+    [tileset release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -176,7 +179,8 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
-    
+    ((MapView *) self.view).map = w;
+    [self.view setNeedsDisplay];
 }
 
 - (void)handleStatusWindow:(NHStatusWindow *)w {

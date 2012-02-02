@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43A377C814DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A377C714DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png */; };
+		43A377CC14DA7CE700B1A9C4 /* Tileset.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A377CB14DA7CE700B1A9C4 /* Tileset.m */; };
+		43A377CF14DA84D800B1A9C4 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A377CE14DA84D800B1A9C4 /* MapView.m */; };
 		43AA353814D999AF00670E46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA353714D999AF00670E46 /* UIKit.framework */; };
 		43AA353A14D999AF00670E46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA353914D999AF00670E46 /* Foundation.framework */; };
 		43AA353C14D999AF00670E46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AA353B14D999AF00670E46 /* CoreGraphics.framework */; };
@@ -282,6 +285,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43A377C714DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vanilla Tiles 16x16.png"; sourceTree = "<group>"; };
+		43A377CA14DA7CE700B1A9C4 /* Tileset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tileset.h; sourceTree = "<group>"; };
+		43A377CB14DA7CE700B1A9C4 /* Tileset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tileset.m; sourceTree = "<group>"; };
+		43A377CD14DA84D800B1A9C4 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		43A377CE14DA84D800B1A9C4 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		43AA353314D999AF00670E46 /* NetHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AA353714D999AF00670E46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		43AA353914D999AF00670E46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -764,6 +772,8 @@
 				43AA355D14D99A8400670E46 /* GlobalConfig.m */,
 				43AA39F014D9AB6F00670E46 /* RoguelikeTextView.h */,
 				43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */,
+				43A377CA14DA7CE700B1A9C4 /* Tileset.h */,
+				43A377CB14DA7CE700B1A9C4 /* Tileset.m */,
 			);
 			path = Util;
 			sourceTree = SOURCE_ROOT;
@@ -1191,6 +1201,7 @@
 			isa = PBXGroup;
 			children = (
 				43AA39CD14D99DA600670E46 /* MainStoryboard.storyboard */,
+				43A377C714DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1200,6 +1211,8 @@
 			children = (
 				43AA39D014D99E4300670E46 /* MainViewController.h */,
 				43AA39D114D99E4300670E46 /* MainViewController.m */,
+				43A377CD14DA84D800B1A9C4 /* MapView.h */,
+				43A377CE14DA84D800B1A9C4 /* MapView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1394,6 +1407,7 @@
 				43AA39C514D99CAC00670E46 /* wizard3.lev in Resources */,
 				43AA39C614D99CAC00670E46 /* wizhelp in Resources */,
 				43AA39CE14D99DA600670E46 /* MainStoryboard.storyboard in Resources */,
+				43A377C814DA7CC500B1A9C4 /* Vanilla Tiles 16x16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1548,8 @@
 				43AA388514D99B7B00670E46 /* vis_tab.c in Sources */,
 				43AA39D214D99E4300670E46 /* MainViewController.m in Sources */,
 				43AA39F214D9AB6F00670E46 /* RoguelikeTextView.m in Sources */,
+				43A377CC14DA7CE700B1A9C4 /* Tileset.m in Sources */,
+				43A377CF14DA84D800B1A9C4 /* MapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

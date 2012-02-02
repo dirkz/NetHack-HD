@@ -89,7 +89,7 @@
 - (NSArray *)messageStrings {
     NSMutableArray *lines = [NSMutableArray arrayWithCapacity:self.numberOfMessages];
     for (NHMessageLine *line in self.messageLines) {
-        [line addObject:line.message];
+        [lines addObject:line.message];
     }
     return lines;
 }
