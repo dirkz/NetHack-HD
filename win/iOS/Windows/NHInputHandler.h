@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CGPointMath.h"
+
 /** Used by e.g. views to communicate input back to the game */
 @protocol NHInputHandler <NSObject>
 
 - (void)handleCharCommand:(char)c sender:(id)sender;
 - (void)handleStringCommand:(NSString *)cmd sender:(id)sender;
+- (void)handleDirectionTap:(eDirection)direction sender:(id)sender;
+- (void)handleDirectionDoubleTap:(eDirection)direction sender:(id)sender;
 
 @end

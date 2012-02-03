@@ -278,6 +278,30 @@ extern int unix_main(int argc, char **argv);
 
 #pragma mark - NHInputHandler
 
+- (char)movementKeyFromDirection:(eDirection)direction {
+    static const char viKeys[] = {
+        'k',
+        'u',
+        'l',
+        'n',
+        'j',
+        'b',
+        'h',
+        'y',
+    };
+    
+    return viKeys[direction];
+}
+
+- (void)handleDirectionTap:(eDirection)direction sender:(id)sender {
+    [self handleCharCommand:[self movementKeyFromDirection:direction] sender:sender];
+}
+
+- (void)handleDirectionDoubleTap:(eDirection)direction sender:(id)sender {
+    char c = [self movementKeyFromDirection:direction];
+    [self handleStringCommand:[NSString stringWithFormat:@"g%c", c] sender:sender];
+}
+
 - (void)handleCharCommand:(char)c sender:(id)sender {
     if (self.currentPoskey) {
         currentPoskey.key = c;

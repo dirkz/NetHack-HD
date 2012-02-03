@@ -95,35 +95,22 @@ extern short glyph2tile[MAX_GLYPH];
 
 #pragma mark - UIGestureRecognizer
 
-- (char)movementKeyFromGestureRecognizer:(UIGestureRecognizer *)gr {
-    static const char viKeys[] = {
-        'k',
-        'u',
-        'l',
-        'n',
-        'j',
-        'b',
-        'h',
-        'y',
-    };
-
+- (char)directionFromGestureRecognizer:(UIGestureRecognizer *)gr {
     CGRect player = self.playerRect;
     CGPoint playerCenter = CGPointMake(CGRectGetMidX(player), CGRectGetMidY(player));
-
+    
     CGPoint delta = CGPointDelta([gr locationInView:gr.view], playerCenter);
-    eDirection dir = CGPointDirectionFromUIKitDelta(delta);
-    char c = viKeys[dir];
-    return c;
+    return CGPointDirectionFromUIKitDelta(delta);
 }
 
 - (void)handleSingleTapGesture:(UITapGestureRecognizer *)gr {
-    char c = [self movementKeyFromGestureRecognizer:gr];
-    [inputHandler handleCharCommand:c sender:self];
+    eDirection direction = [self directionFromGestureRecognizer:gr];
+    [inputHandler handleDirectionTap:direction sender:self];
 }
 
 - (void)handleDoubleTapGesture:(UITapGestureRecognizer *)gr {
-    char c = [self movementKeyFromGestureRecognizer:gr];
-    [inputHandler handleStringCommand:[NSString stringWithFormat:@"g%c", c] sender:self];
+    eDirection direction = [self directionFromGestureRecognizer:gr];
+    [inputHandler handleDirectionDoubleTap:direction sender:self];
 }
 
 #pragma mark - Properties
