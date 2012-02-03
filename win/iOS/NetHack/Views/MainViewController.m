@@ -21,6 +21,7 @@
 #import "NHPoskey.h"
 #import "NHMenuWindow.h"
 #import "TextMenuViewController.h"
+#import "NHInputHandler.h"
 
 extern int unix_main(int argc, char **argv);
 
@@ -33,6 +34,9 @@ extern int unix_main(int argc, char **argv);
     NSThread *netHackThread;
     Tileset *tileset;
     IBOutlet MapView *mapView;
+    
+    /** Use this for putting 'macros' into the 'command queue' */
+    NSMutableString *commandBufferString;
     
 }
 
@@ -67,6 +71,8 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)awakeFromNib {
+    commandBufferString = [[NSMutableString alloc] init];
+    
     tileset = [[Tileset alloc] initWithName:@"Vanilla Tiles 16x16.png" tileSize:CGSizeMake(16.f, 16.f)];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
@@ -79,6 +85,7 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)dealloc {
+    [commandBufferString release];
     [tileset release];
     [super dealloc];
 }
@@ -112,7 +119,7 @@ extern int unix_main(int argc, char **argv);
     
     [[GlobalConfig sharedInstance] setObject:self forKey:kNHHandler];
     
-    mapView.delegate = self;
+    mapView.inputHandler = self;
 
 	netHackThread = [[NSThread alloc] initWithTarget:self selector:@selector(netHackMainLoop:) object:nil];
 	[netHackThread start];
@@ -214,6 +221,12 @@ extern int unix_main(int argc, char **argv);
 
 - (void)handlePoskey:(NHPoskey *)p {
     self.currentPoskey = p;
+    if (commandBufferString.length > 0) {
+        currentPoskey.key = [commandBufferString characterAtIndex:0];
+        [commandBufferString deleteCharactersInRange:NSMakeRange(0, 1)];
+        [currentPoskey signal];
+        self.currentPoskey = nil;
+    }
 }
 
 - (void)handleMapWindow:(NHMapWindow *)w shouldBlock:(BOOL)b {
@@ -263,14 +276,23 @@ extern int unix_main(int argc, char **argv);
     self.currentMenuWindow = nil;
 }
 
-#pragma mark - MapViewDelegate
+#pragma mark - NHInputHandler
 
-- (void)mapView:(MapView *)mapView poskey:(NHPoskey *)poskey {
+- (void)handleCharCommand:(char)c sender:(id)sender {
     if (self.currentPoskey) {
-        if (poskey.key) {
-            currentPoskey.key = poskey.key;
-        }
+        currentPoskey.key = c;
         [currentPoskey signal];
+        self.currentPoskey = nil;
+    }
+}
+
+- (void)handleStringCommand:(NSString *)cmd sender:(id)sender {
+    [commandBufferString setString:cmd];
+    if (self.currentPoskey) {
+        currentPoskey.key = [commandBufferString characterAtIndex:0];
+        [commandBufferString deleteCharactersInRange:NSMakeRange(0, 1)];
+        [currentPoskey signal];
+        self.currentPoskey = nil;
     }
 }
 

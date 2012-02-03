@@ -14,7 +14,7 @@
 #include "hack.h"
 
 #import "CGPointMath.h"
-#import "NHPoskey.h"
+#import "NHInputHandler.h"
 
 extern short glyph2tile[MAX_GLYPH];
 
@@ -30,13 +30,22 @@ extern short glyph2tile[MAX_GLYPH];
 
 @synthesize map;
 @synthesize tileset;
-@synthesize delegate;
+@synthesize inputHandler;
 
 - (void)awakeFromNib {
-    UITapGestureRecognizer *stgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
-    stgr.numberOfTapsRequired = 1;
-    [self addGestureRecognizer:stgr];
-    [stgr release];
+    {
+        UITapGestureRecognizer *stgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
+        stgr.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:stgr];
+        [stgr release];
+    }
+
+    {
+        UITapGestureRecognizer *dtgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGesture:)];
+        dtgr.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:dtgr];
+        [dtgr release];
+    }
 }
 
 - (void)drawRect:(CGRect)rect
@@ -109,8 +118,12 @@ extern short glyph2tile[MAX_GLYPH];
 
 - (void)handleSingleTapGesture:(UITapGestureRecognizer *)gr {
     char c = [self movementKeyFromGestureRecognizer:gr];
-    NHPoskey *poskey = [NHPoskey poskeyWithKey:c];
-    [delegate mapView:self poskey:poskey];
+    [inputHandler handleCharCommand:c sender:self];
+}
+
+- (void)handleDoubleTapGesture:(UITapGestureRecognizer *)gr {
+    char c = [self movementKeyFromGestureRecognizer:gr];
+    [inputHandler handleStringCommand:[NSString stringWithFormat:@"g%c", c] sender:self];
 }
 
 #pragma mark - Properties

@@ -8,14 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MapView;
-@class NHPoskey;
-
-@protocol MapViewDelegate <NSObject>
-
-- (void)mapView:(MapView *)mapView poskey:(NHPoskey *)poskey;
-
-@end
+#import "NHInputHandler.h"
 
 @class NHMapWindow;
 @class Tileset;
@@ -24,7 +17,7 @@
 
 @property (nonatomic, assign) NHMapWindow *map;
 @property (nonatomic, assign) Tileset *tileset;
-@property (nonatomic, assign) id<MapViewDelegate> delegate;
+@property (nonatomic, assign) id<NHInputHandler> inputHandler;
 
 /** The tile rect where the player is, in local view coordinates.
  * Will return the map center if there's currently no player position.
