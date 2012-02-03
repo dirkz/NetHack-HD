@@ -324,7 +324,9 @@ void ios_add_menu(winid wid, int glyph, const ANY_P *identifier,
 void ios_end_menu(winid wid, const char *prompt) {
 //	DLog(@"end_menu %x, %s", wid, prompt);
     [(NHMenuWindow *) wid end];
-    ((NHMenuWindow *) wid).prompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
+    if (prompt) {
+        ((NHMenuWindow *) wid).prompt = [NSString stringWithCString:prompt encoding:NSASCIIStringEncoding];
+    }
 }
 
 int ios_select_menu(winid wid, int how, menu_item **selected) {
