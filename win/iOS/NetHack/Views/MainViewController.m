@@ -76,7 +76,6 @@ extern int unix_main(int argc, char **argv);
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidHideNotification object:nil queue:nil usingBlock:^(NSNotification *n) {
         [self resizeMapViewWithKeyboardEndFrame:[[n.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]];
     }];
-    
 }
 
 - (void)dealloc {
