@@ -22,6 +22,9 @@
 #import "NHMenuWindow.h"
 #import "TextMenuViewController.h"
 #import "NHInputHandler.h"
+#import "IntPosition.h"
+
+#define QUICK_STARTUP
 
 extern int unix_main(int argc, char **argv);
 
@@ -47,6 +50,9 @@ extern int unix_main(int argc, char **argv);
 - (void)netHackMainLoop:(id)arg;
 - (void)addMessageLineString:(NSString *)line;
 
+- (void)signalCurrentPoskeyWithChar:(char)c;
+- (void)signalCurrentYNQuestionWithChar:(char)c;
+
 @end
 
 @implementation MainViewController
@@ -68,6 +74,7 @@ extern int unix_main(int argc, char **argv);
     CGRect topRect = [self topViewsRect];
     CGRect mapRect = CGRectMake(0.f, CGRectGetMaxY(topRect), self.view.bounds.size.width, CGRectGetHeight(self.view.bounds) - CGRectGetHeight(topRect) - CGRectGetHeight(keyboardBounds));
     mapView.frame = mapRect;
+    [mapView setNeedsDisplay];
 }
 
 - (void)awakeFromNib {
@@ -192,9 +199,23 @@ extern int unix_main(int argc, char **argv);
 #pragma mark - NHHandler
 
 - (void)handleYNQuestion:(NHYNQuestion *)question {
-    self.currentYNQuestion = question;
-    [self addMessageLineString:question.question];
-    [dummyTextView becomeFirstResponder];
+#ifdef QUICK_STARTUP
+    if ([question.question isEqualToString:@"There is already a game in progress under your name.  Destroy old game?"]) {
+        self.currentYNQuestion = question;
+        [self signalCurrentYNQuestionWithChar:'y'];
+    } else if ([question.question isEqualToString:@"Shall I pick a character's race, role, gender and alignment for you? [ynq] "]) {
+        self.currentYNQuestion = question;
+        [self signalCurrentYNQuestionWithChar:'y'];
+    }
+#endif
+    if (commandBufferString.length > 0) {
+        [self signalCurrentYNQuestionWithChar:[commandBufferString characterAtIndex:0]];
+        [commandBufferString deleteCharactersInRange:NSMakeRange(0, 1)];
+    } else {
+        self.currentYNQuestion = question;
+        [self addMessageLineString:question.question];
+        [dummyTextView becomeFirstResponder];
+    }
 }
 
 - (void)handleMenuWindow:(NHMenuWindow *)w {
@@ -202,7 +223,12 @@ extern int unix_main(int argc, char **argv);
     if (self.currentMenuWindow.isMenuWindow) {
         //todo show real menu
     } else {
+#ifdef QUICK_STARTUP
+        [currentMenuWindow signal];
+        self.currentMenuWindow = nil;
+#else
         [self performSegueWithIdentifier:@"TextMenu" sender:nil];
+#endif
     }
 }
 
@@ -222,10 +248,8 @@ extern int unix_main(int argc, char **argv);
 - (void)handlePoskey:(NHPoskey *)p {
     self.currentPoskey = p;
     if (commandBufferString.length > 0) {
-        currentPoskey.key = [commandBufferString characterAtIndex:0];
+        [self signalCurrentPoskeyWithChar:[commandBufferString characterAtIndex:0]];
         [commandBufferString deleteCharactersInRange:NSMakeRange(0, 1)];
-        [currentPoskey signal];
-        self.currentPoskey = nil;
     }
 }
 
@@ -246,13 +270,9 @@ extern int unix_main(int argc, char **argv);
     if (text.length == 1) {
         char c = [text characterAtIndex:0];
         if (self.currentYNQuestion) {
-            currentYNQuestion.choice = c;
-            [currentYNQuestion signal];
-            self.currentYNQuestion = nil;
+            [self signalCurrentYNQuestionWithChar:c];
         } else if (self.currentPoskey) {
-            currentPoskey.key = c;
-            [currentPoskey signal];
-            self.currentPoskey = nil;
+            [self signalCurrentPoskeyWithChar:c];
         }
     }
     return NO;
@@ -294,7 +314,49 @@ extern int unix_main(int argc, char **argv);
 }
 
 - (void)handleDirectionTap:(eDirection)direction sender:(id)sender {
-    [self handleCharCommand:[self movementKeyFromDirection:direction] sender:sender];
+    IntPosition tp = IntPositionMake(u.ux, u.uy);
+    switch (direction) {
+        case kDirectionLeft:
+            tp.x--;
+            break;
+        case kDirectionUpLeft:
+            tp.x--;
+            tp.y--;
+            break;
+        case kDirectionUp:
+            tp.y--;
+            break;
+        case kDirectionUpRight:
+            tp.x++;
+            tp.y--;
+            break;
+        case kDirectionRight:
+            tp.x++;
+            break;
+        case kDirectionDownRight:
+            tp.x++;
+            tp.y++;
+            break;
+        case kDirectionDownLeft:
+            tp.x--;
+            tp.y++;
+            break;
+        case kDirectionDown:
+            tp.y++;
+            break;
+        case kDirectionMax:
+            break;
+    }
+    if (IS_DOOR(levl[tp.x][tp.y].typ)) {
+        int mask = levl[tp.x][tp.y].doormask;
+        if (mask & D_CLOSED) {
+            [self handleStringCommand:[NSString stringWithFormat:@"o%c", [self movementKeyFromDirection:direction]] sender:sender];
+        } else {
+            [self handleCharCommand:[self movementKeyFromDirection:direction] sender:sender];
+        }
+    } else {
+        [self handleCharCommand:[self movementKeyFromDirection:direction] sender:sender];
+    }
 }
 
 - (void)handleDirectionDoubleTap:(eDirection)direction sender:(id)sender {
@@ -304,20 +366,32 @@ extern int unix_main(int argc, char **argv);
 
 - (void)handleCharCommand:(char)c sender:(id)sender {
     if (self.currentPoskey) {
-        currentPoskey.key = c;
-        [currentPoskey signal];
-        self.currentPoskey = nil;
+        [self signalCurrentPoskeyWithChar:c];
+    } else if (self.currentYNQuestion) {
+        [self signalCurrentYNQuestionWithChar:c];
     }
 }
 
 - (void)handleStringCommand:(NSString *)cmd sender:(id)sender {
     [commandBufferString setString:cmd];
     if (self.currentPoskey) {
-        currentPoskey.key = [commandBufferString characterAtIndex:0];
+        [self signalCurrentPoskeyWithChar:[commandBufferString characterAtIndex:0]];
         [commandBufferString deleteCharactersInRange:NSMakeRange(0, 1)];
-        [currentPoskey signal];
-        self.currentPoskey = nil;
     }
+}
+
+#pragma mark - Internal
+
+- (void)signalCurrentPoskeyWithChar:(char)c {
+    currentPoskey.key = c;
+    [currentPoskey signal];
+    self.currentPoskey = nil;
+}
+
+- (void)signalCurrentYNQuestionWithChar:(char)c {
+    currentYNQuestion.choice = c;
+    [currentYNQuestion signal];
+    self.currentYNQuestion = nil;
 }
 
 @end

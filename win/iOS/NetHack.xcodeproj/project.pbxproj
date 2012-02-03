@@ -686,6 +686,7 @@
 		43AA39F014D9AB6F00670E46 /* RoguelikeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoguelikeTextView.h; sourceTree = "<group>"; };
 		43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoguelikeTextView.m; sourceTree = "<group>"; };
 		43B6C10514DC74BD0032B625 /* NHInputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHInputHandler.h; sourceTree = "<group>"; };
+		43B6C11114DC7B720032B625 /* IntPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; path = IntPosition.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +779,7 @@
 				43AA39F114D9AB6F00670E46 /* RoguelikeTextView.m */,
 				43A377CA14DA7CE700B1A9C4 /* Tileset.h */,
 				43A377CB14DA7CE700B1A9C4 /* Tileset.m */,
+				43B6C11114DC7B720032B625 /* IntPosition.h */,
 			);
 			path = Util;
 			sourceTree = SOURCE_ROOT;
