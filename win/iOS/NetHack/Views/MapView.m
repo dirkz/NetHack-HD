@@ -26,8 +26,8 @@ extern short glyph2tile[MAX_GLYPH];
 - (void)drawRect:(CGRect)rect
 {
     if (map) {
-        CGPoint start = CGPointMake(self.bounds.size.width/2 + tileset.tilesize.width/2 - map.x * tileset.tilesize.width,
-                                    self.bounds.size.height/2 + tileset.tilesize.height/2 - map.y * tileset.tilesize.height);
+        CGPoint start = CGPointMake(roundf(self.bounds.size.width/2 + tileset.tilesize.width/2 - map.x * tileset.tilesize.width),
+                                    roundf(self.bounds.size.height/2 + tileset.tilesize.height/2 - map.y * tileset.tilesize.height));
         
         for (int j = 0; j < map.rows; ++j) {
             for (int i = 0; i < map.columns; ++i) {
@@ -48,8 +48,8 @@ extern short glyph2tile[MAX_GLYPH];
 
 - (CGRect)playerRect {
     if (map) {
-        return CGRectMake(self.bounds.size.width/2 - map.x * tileset.tilesize.width,
-                          self.bounds.size.height/2 - map.y * tileset.tilesize.height,
+        return CGRectMake(roundf(self.bounds.size.width/2 - map.x * tileset.tilesize.width),
+                          roundf(self.bounds.size.height/2 - map.y * tileset.tilesize.height),
                           tileset.tilesize.width, tileset.tilesize.height);
     } else {
         CGRect r = CGRectMake(self.bounds.size.width/2, self.bounds.size.height/2, 0.f, 0.f);
