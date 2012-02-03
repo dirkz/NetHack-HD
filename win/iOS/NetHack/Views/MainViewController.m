@@ -112,6 +112,8 @@ extern int unix_main(int argc, char **argv);
     
     [[GlobalConfig sharedInstance] setObject:self forKey:kNHHandler];
     
+    mapView.delegate = self;
+
 	netHackThread = [[NSThread alloc] initWithTarget:self selector:@selector(netHackMainLoop:) object:nil];
 	[netHackThread start];
 }
@@ -253,12 +255,23 @@ extern int unix_main(int argc, char **argv);
     }
 }
 
-#pragma mark TextMenuViewControllerDelegate
+#pragma mark - TextMenuViewControllerDelegate
 
 - (void)textMenuViewControllerDone:(TextMenuViewController *)vc {
     [vc dismissModalViewControllerAnimated:YES];
     [self.currentMenuWindow signal];
     self.currentMenuWindow = nil;
+}
+
+#pragma mark - MapViewDelegate
+
+- (void)mapView:(MapView *)mapView poskey:(NHPoskey *)poskey {
+    if (self.currentPoskey) {
+        if (poskey.key) {
+            currentPoskey.key = poskey.key;
+        }
+        [currentPoskey signal];
+    }
 }
 
 @end

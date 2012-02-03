@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "TextMenuViewController.h"
+#import "MapView.h"
 
-@interface MainViewController : UIViewController <UITextViewDelegate,TextMenuViewControllerDelegate>
+@interface MainViewController : UIViewController <UITextViewDelegate,TextMenuViewControllerDelegate, MapViewDelegate>
 
 @end
