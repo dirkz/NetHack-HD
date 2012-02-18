@@ -2,8 +2,8 @@
 //  CGPointMath.m
 //  RogueTerm
 //
-//  Created by dirk on 1/1/10.
-//  Copyright 2011 Dirk Zimmermann. All rights reserved.
+//  Created by Dirk Zimmermann on 1/1/10.
+//  Copyright (c) 2011 Dirk Zimmermann. All rights reserved.
 //
 
 #include <math.h>

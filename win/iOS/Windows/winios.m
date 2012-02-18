@@ -3,7 +3,7 @@
  *  SlashEM
  *
  *  Created by dirk on 6/26/09.
- *  Copyright 2009 Dirk Zimmermann. All rights reserved.
+ *  Copyright (c) 2009 Dirk Zimmermann. All rights reserved.
  *
  */
 

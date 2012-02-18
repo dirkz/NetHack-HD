@@ -3,7 +3,7 @@
 //  RogueTerm
 //
 //  Created by Dirk Zimmermann on 7/21/11.
-//  Copyright 2011 Dirk Zimmermann. All rights reserved.
+//  Copyright (c) 2011 Dirk Zimmermann. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>

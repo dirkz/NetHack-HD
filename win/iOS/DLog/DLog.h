@@ -3,7 +3,7 @@
  *  NetHack HD
  *
  *  Created by Dirk Zimmermann on 11/15/10.
- *  Dirk Zimmermann. All rights reserved.
+ *  Copyright (c) Dirk Zimmermann. All rights reserved.
  *
  */
 

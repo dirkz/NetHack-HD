@@ -3,7 +3,7 @@
 //  RogueTerm
 //
 //  Created by Dirk Zimmermann on 6/27/11.
-//  Copyright 2011 Dirk Zimmermann. All rights reserved.
+//  Copyright (c) 2011 Dirk Zimmermann. All rights reserved.
 //
 
 typedef enum _eDirection {
